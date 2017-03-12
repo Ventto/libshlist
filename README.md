@@ -6,6 +6,22 @@ POSIX Shell Array
 
 *"This is a POSIX Shell array implementation."*
 
+# Download
+
+```bash
+$ wget https://raw.githubusercontent.com/Ventto/posix-shell-array/master/src/array.sh
+```
+
+# How to
+
+* Add the following line to your script:
+
+```bash
+. array.sh
+```
+
+* Look at `src/test.sh` as examples.
+
 # Functions
 
 ```bash
