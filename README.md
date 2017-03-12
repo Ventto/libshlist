@@ -9,7 +9,7 @@ POSIX Shell Array
 # Download
 
 ```bash
-$ wget https://raw.githubusercontent.com/Ventto/posix-shell-array/master/src/array.sh
+$ wget https://raw.githubusercontent.com/Ventto/posix-shell-array/master/array.sh
 ```
 
 # How to
@@ -20,7 +20,7 @@ $ wget https://raw.githubusercontent.com/Ventto/posix-shell-array/master/src/arr
 . array.sh
 ```
 
-* Look at `src/test.sh` as examples.
+* Look at `test.sh` as examples.
 
 # Functions
 
