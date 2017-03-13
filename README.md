@@ -22,6 +22,9 @@ $ wget https://raw.githubusercontent.com/Ventto/posix-shell-array/master/array.s
 
 * Look at `test.sh` as examples.
 
+**Warning:
+There is no check on the number of arguments. Prior to respect the API.**
+
 # Functions
 
 ```bash
