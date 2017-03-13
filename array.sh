@@ -37,6 +37,10 @@ array_add () {
 }
 
 array_del () {
+    echo "$2" | sed -e "0,/$1/ s///" -e '/^$/d'
+}
+
+array_delall () {
     echo "$2" | sed -e "/$1/d"
 }
 
@@ -64,12 +68,10 @@ array_last () {
     for last in $1; do true; done; echo "$last"
 }
 
-array_indexof () {
-    i=0; o="$1"; f=0;
-    for e in $2; do [ "$e" = "$o" ] && { echo "$i"; f=1; break; }; i=$((i+1)); done
-    [ "$f" -eq 0 ] && echo '-1'
+array_occr () {
+    i=0; for e in $2; do [ "$1" = "$e" ] && { i=$((i+1)); }; done; echo "$i"
 }
 
-array_contains () {
-    [ "$(array_indexof "$1" "$2")" != '-1' ] && return 0; return 1
+array_map () {
+    for e in $2; do eval "$1 $e"; done
 }

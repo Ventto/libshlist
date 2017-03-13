@@ -27,8 +27,8 @@ array_test () {
     arr="$(array_del 'e3' "$arr")"
     echo "$arr"
 
-    echo 'Delete "index 1": '
-    arr="$(array_delindex '1' "$arr")"
+    echo 'Delete "index 2": '
+    arr="$(array_delindex '2' "$arr")"
     echo "$arr"
 
     echo 'Add "e5": '
@@ -48,6 +48,32 @@ array_test () {
     else
         echo 'no'
     fi
+
+    echo 'Add "e2": '
+    arr="$(array_add 'e2' "$arr")"
+    echo "$arr"
+
+    echo -n 'How many "e2": '
+    echo "$(array_occr 'e2' "$arr")"
+
+    echo 'Delete "e2": '
+    arr="$(array_del 'e2' "$arr")"
+    echo "$arr"
+
+    echo 'Add 2 x "e2": '
+    arr="$(array_add 'e2' "$arr")"
+    arr="$(array_add 'e2' "$arr")"
+    echo "$arr"
+
+    echo -n 'How many "e2": '
+    echo "$(array_occr 'e2' "$arr")"
+
+    echo 'Delete all "e2": '
+    arr="$(array_delall 'e2' "$arr")"
+    echo "$arr"
+
+    echo -n 'How many "e2": '
+    echo "$(array_occr 'e2' "$arr")"
 }
 
 echo "\n==== Not Empty ====\n"
