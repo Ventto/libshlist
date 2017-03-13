@@ -29,17 +29,17 @@ There is no check on the number of arguments. Prior to respect the API.**
 
 ```bash
 array 'string'
-array_len "$arr"
-array_empty "$arr"
 array_add "$elem" "$arr"
+array_contains "$elem" "$arr"
 array_del "$elem" "$arr"
 array_delall "$elem" "$arr"
-array_delindex "$elem" "$arr"
+array_delindex "$index" "$arr"
+array_empty "$arr"
 array_get "$index" "$arr"
 array_head "$arr"
-array_last "$arr"
 array_indexof "$elem" "$arr"
-array_contains "$elem" "$arr"
-array_occur "$elem" "$arr"
+array_last "$arr"
+array_len "$arr"
 array_map "$func" "$arr"
+array_occur "$elem" "$arr"
 ```
