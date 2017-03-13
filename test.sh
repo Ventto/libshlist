@@ -74,6 +74,9 @@ array_test () {
 
     echo -n 'How many "e2": '
     echo "$(array_occr 'e2' "$arr")"
+
+    echo 'Map::<echo>: '
+    echo "$(array_map 'echo' "$arr")"
 }
 
 echo "\n==== Not Empty ====\n"
