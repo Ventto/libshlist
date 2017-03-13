@@ -33,13 +33,13 @@ array_add "$elem" "$arr"        : Adds an element
 array_contains "$elem" "$arr"   : Returns 0 if element found else 1
 array_del "$elem" "$arr"        : Deletes the first-hit element
 array_delall "$elem" "$arr"     : Deletes all elements
-array_delindex "$index" "$arr"  : Deletes the index's element
+array_delindex "$index" "$arr"  : Deletes the index of an array
 array_empty "$arr"              : Returns 0 if empty else 1
-array_get "$index" "$arr"       : Gets the element from its index
-array_head "$arr"               : Gets the first element
-array_indexof "$elem" "$arr"    : Gets the index of an element
-array_last "$arr"               : Gets the last element
-array_len "$arr"                : Gets the length of an array
+array_get "$index" "$arr"       : Prints the element from its index
+array_head "$arr"               : Prints the first element
+array_indexof "$elem" "$arr"    : Prints the index of an element
+array_last "$arr"               : Prints the last element
+array_len "$arr"                : Prints the length of an array
 array_map "$func" "$arr"        : Maps an array using a function
 array_occur "$elem" "$arr"      : Counts the number of elements
 ```
