@@ -58,7 +58,9 @@ array_indexof () {
     return 1;
 }
 
-alias array_contains='array_indexof'
+array_contains () {
+    array_indexof "$1" "$2" > /dev/null
+}
 
 array_head () {
     echo "$@" | head -n1
