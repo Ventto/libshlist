@@ -41,13 +41,20 @@ array_del () {
 }
 
 array_get () {
-    i=0; j="$1";
-    for e in $2; do [ "$i" = "$j" ] && { echo "$e"; break; }; i=$((i+1)); done
+    i=0; for e in $2; do [ "$i" = "$1" ] && { echo "$e"; return 0; }; i=$((i+1)); done
+    return 1;
 }
 
 array_delindex () {
     e="$(array_get "$1" "$2")"; [ -n "$e" ] && { echo "$2" | sed -e "/$e/d"; }
 }
+
+array_indexof () {
+    i=0; for e in $2; do [ "$e" = "$1" ] && { echo "$i"; return 0; }; i=$((i+1)); done
+    return 1;
+}
+
+alias array_contains='array_indexof'
 
 array_head () {
     echo "$@" | head -n1
