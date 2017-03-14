@@ -1,14 +1,14 @@
-POSIX Shell Array
-=================
+POSIX Shell List
+================
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/Ventto/posix-shell-array/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/Ventto/posix-shell-list/blob/master/LICENSE)
 
-*"This is a POSIX Shell array implementation."*
+*"This is a POSIX Shell list implementation."*
 
 # Download
 
 ```bash
-$ wget https://raw.githubusercontent.com/Ventto/posix-shell-array/master/array.sh
+$ wget https://raw.githubusercontent.com/Ventto/posix-shell-list/master/list.sh
 ```
 
 # How to
@@ -16,7 +16,7 @@ $ wget https://raw.githubusercontent.com/Ventto/posix-shell-array/master/array.s
 * Add the following line to your script:
 
 ```bash
-. array.sh
+. list.sh
 ```
 
 * Look at `test.sh` as examples.
@@ -28,18 +28,18 @@ $ wget https://raw.githubusercontent.com/Ventto/posix-shell-array/master/array.s
 There is no check on the number of arguments. Prior to respect the API.**
 
 ```
-array 'string'                  : Creates a new array
-array_add "$elem" "$arr"        : Adds an element
-array_contains "$elem" "$arr"   : Returns 0 if element found else 1
-array_del "$elem" "$arr"        : Deletes the first-hit element
-array_delall "$elem" "$arr"     : Deletes all elements
-array_delindex "$index" "$arr"  : Deletes the index of an array
-array_empty "$arr"              : Returns 0 if empty else 1
-array_get "$index" "$arr"       : Prints the element from its index
-array_head "$arr"               : Prints the first element
-array_indexof "$elem" "$arr"    : Prints the index of an element
-array_last "$arr"               : Prints the last element
-array_len "$arr"                : Prints the length of an array
-array_map "$func" "$arr"        : Maps an array using a function
-array_occur "$elem" "$arr"      : Counts the number of elements
+list 'string'                  : Creates a new list
+list_add "$elt" "$lst"         : Adds an element
+list_contains "$elt" "$lst"    : Returns 0 if element found else 1
+list_del "$elt" "$lst"         : Deletes the first-hit element
+list_delall "$elt" "$lst"      : Deletes all elements
+list_delindex "$index" "$lst"  : Deletes the index of a list
+list_empty "$lst"              : Returns 0 if empty else 1
+list_get "$index" "$lst"       : Prints the element from its index
+list_head "$lst"               : Prints the first element
+list_indexof "$elt" "$lst"     : Prints the index of an element
+list_last "$lst"               : Prints the last element
+list_len "$lst"                : Prints the length of a list
+list_map "$func" "$lst"        : Maps a list using a function
+list_occur "$elt" "$lst"       : Counts the number of elements
 ```

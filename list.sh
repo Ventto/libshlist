@@ -1,4 +1,3 @@
-#!/bin/sh
 # The MIT License (MIT)
 #
 # Copyright (c) 2015-2016 Thomas "Ventto" Venriès <thomas.venries@gmail.com>
@@ -20,38 +19,38 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-# Creates a new array : array 'string'
-array () {
+# Creates a new list : list 'string'
+list () {
     for e in $1; do echo "$e"; done
 }
 
-# Prints the length of an array : array_len "$arr"
-array_len () {
+# Prints the length of an list : list_len "$lst"
+list_len () {
     echo "$@" | wc -w
 }
 
-# Returns 0 if empty else 1 : array_empty "$arr"
-array_empty () {
-    [ "$(array_len "$@")" -eq 0 ] && return 0; return 1
+# Returns 0 if empty else 1 : list_empty "$lst"
+list_empty () {
+    [ "$(list_len "$@")" -eq 0 ] && return 0; return 1
 }
 
-# Adds an element : array_add "$elem" "$arr"
-array_add () {
-    array_empty "$2" && echo "$1" || printf '%s\n%s' "$2" "$1"
+# Adds an element : list_add "$elt" "$lst"
+list_add () {
+    list_empty "$2" && echo "$1" || printf '%s\n%s' "$2" "$1"
 }
 
-# Deletes the first-hit element : array_del "$elem" "$arr"
-array_del () {
+# Deletes the first-hit element : list_del "$elt" "$lst"
+list_del () {
     echo "$2" | sed -e "0,/$1/ s///" -e '/^$/d'
 }
 
-# Deletes all elements : array_delall "$elem" "$arr"
-array_delall () {
+# Deletes all elements : list_delall "$elt" "$lst"
+list_delall () {
     echo "$2" | sed -e "/$1/d"
 }
 
-# Prints the element from its index : array_get "$index" "$arr"
-array_get () {
+# Prints the element from its index : list_get "$index" "$lst"
+list_get () {
     i=0;
     for e in $2; do
         [ "$i" = "$1" ] && { echo "$e"; return 0; }; i=$((i+1))
@@ -59,13 +58,13 @@ array_get () {
     return 1;
 }
 
-# Deletes the index of an array : array_delindex "$index" "$arr"
-array_delindex () {
-    e="$(array_get "$1" "$2")"; [ -n "$e" ] && { echo "$2" | sed -e "/$e/d"; }
+# Deletes the index of an list : list_delindex "$index" "$lst"
+list_delindex () {
+    e="$(list_get "$1" "$2")"; [ -n "$e" ] && { echo "$2" | sed -e "/$e/d"; }
 }
 
-# Prints the index of an element : array_indexof "$elem" "$arr"
-array_indexof () {
+# Prints the index of an element : list_indexof "$elt" "$lst"
+list_indexof () {
     i=0;
     for e in $2; do
         [ "$e" = "$1" ] && { echo "$i"; return 0; }; i=$((i+1));
@@ -73,27 +72,27 @@ array_indexof () {
     return 1;
 }
 
-# Returns 0 if element found else 1 : array_contains "$elem" "$arr"
-array_contains () {
-    array_indexof "$1" "$2" > /dev/null
+# Returns 0 if element found else 1 : list_contains "$elt" "$lst"
+list_contains () {
+    list_indexof "$1" "$2" > /dev/null
 }
 
-# Prints the first element : array_head "$arr"
-array_head () {
+# Prints the first element : list_head "$lst"
+list_head () {
     echo "$@" | head -n1
 }
 
-# Prints the last element : array_last "$arr"
-array_last () {
+# Prints the last element : list_last "$lst"
+list_last () {
     for last in $1; do true; done; echo "$last"
 }
 
-# Counts the number of elements : array_occur "$elem" "$arr"
-array_occr () {
+# Counts the number of elements : list_occur "$elt" "$lst"
+list_occr () {
     i=0; for e in $2; do [ "$1" = "$e" ] && { i=$((i+1)); }; done; echo "$i"
 }
 
-# Maps an array using a function : array_map "$func" "$arr"
-array_map () {
+# Maps an list using a function : list_map "$func" "$lst"
+list_map () {
     for e in $2; do eval "$1 $e"; done
 }

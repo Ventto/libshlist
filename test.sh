@@ -1,90 +1,90 @@
 #!/bin/sh
 
-. ./array.sh
+. ./list.sh
 
-array_test () {
-    arr="$1"
+list_test () {
+    lst="$1"
 
-    echo -n 'Length of array: '
-    echo "$(array_len "$arr")"
+    echo -n 'Length of list: '
+    echo "$(list_len "$lst")"
 
     echo -n 'Get idx=1: '
-    echo "$(array_get 1 "$arr")"
+    echo "$(list_get 1 "$lst")"
 
     echo -n 'Get idx=2: '
-    echo "$(array_get 2 "$arr")"
+    echo "$(list_get 2 "$lst")"
 
     echo -n 'Get idx of "e4": '
-    echo "$(array_indexof 'e4' "$arr")"
+    echo "$(list_indexof 'e4' "$lst")"
 
     echo -n 'Get idx of "e2": '
-    echo "$(array_indexof 'e2' "$arr")"
+    echo "$(list_indexof 'e2' "$lst")"
 
     echo -n 'Get idx of "foo": '
-    echo "$(array_indexof 'foo' "$arr")"
+    echo "$(list_indexof 'foo' "$lst")"
 
     echo 'Delete "e3": '
-    arr="$(array_del 'e3' "$arr")"
-    echo "$arr"
+    lst="$(list_del 'e3' "$lst")"
+    echo "$lst"
 
     echo 'Delete "index 2": '
-    arr="$(array_delindex '2' "$arr")"
-    echo "$arr"
+    lst="$(list_delindex '2' "$lst")"
+    echo "$lst"
 
     echo 'Add "e5": '
-    arr="$(array_add 'e5' "$arr")"
-    echo "$arr"
+    lst="$(list_add 'e5' "$lst")"
+    echo "$lst"
 
     echo -n 'Contains "e3" ?: '
-    if array_contains 'e3' "$arr"; then
+    if list_contains 'e3' "$lst"; then
         echo 'yes'
     else
         echo 'no'
     fi
 
     echo -n 'Contains "e5" ?: '
-    if array_contains 'e5' "$arr"; then
+    if list_contains 'e5' "$lst"; then
         echo 'yes'
     else
         echo 'no'
     fi
 
     echo 'Add "e2": '
-    arr="$(array_add 'e2' "$arr")"
-    echo "$arr"
+    lst="$(list_add 'e2' "$lst")"
+    echo "$lst"
 
     echo -n 'How many "e2": '
-    echo "$(array_occr 'e2' "$arr")"
+    echo "$(list_occr 'e2' "$lst")"
 
     echo 'Delete "e2": '
-    arr="$(array_del 'e2' "$arr")"
-    echo "$arr"
+    lst="$(list_del 'e2' "$lst")"
+    echo "$lst"
 
     echo 'Add 2 x "e2": '
-    arr="$(array_add 'e2' "$arr")"
-    arr="$(array_add 'e2' "$arr")"
-    echo "$arr"
+    lst="$(list_add 'e2' "$lst")"
+    lst="$(list_add 'e2' "$lst")"
+    echo "$lst"
 
     echo -n 'How many "e2": '
-    echo "$(array_occr 'e2' "$arr")"
+    echo "$(list_occr 'e2' "$lst")"
 
     echo 'Delete all "e2": '
-    arr="$(array_delall 'e2' "$arr")"
-    echo "$arr"
+    lst="$(list_delall 'e2' "$lst")"
+    echo "$lst"
 
     echo -n 'How many "e2": '
-    echo "$(array_occr 'e2' "$arr")"
+    echo "$(list_occr 'e2' "$lst")"
 
     echo 'Map::<echo>: '
-    echo "$(array_map 'echo' "$arr")"
+    echo "$(list_map 'echo' "$lst")"
 }
 
 echo "\n==== Not Empty ====\n"
-arr="$(array "e1 e2 e3 e4")"
-array_test "$arr"
+lst="$(list "e1 e2 e3 e4")"
+list_test "$lst"
 
 echo "\n==== Empty ====\n"
-arr=
-array_test "$arr"
+lst=
+list_test "$lst"
 
 
