@@ -1,3 +1,4 @@
+#!/bin/sh
 # The MIT License (MIT)
 #
 # Copyright (c) 2015-2016 Thomas "Ventto" Venriès <thomas.venries@gmail.com>
