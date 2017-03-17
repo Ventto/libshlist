@@ -25,7 +25,7 @@ $ wget https://raw.githubusercontent.com/Ventto/posix-shell-list/master/list.sh
 # Functions
 
 **Warning:
-There is no check on the number of arguments. Prior to respect the API.**
+There is no check on arguments. Prior to respect the API.**
 
 ```
 list 'string'                       : Creates a new list
