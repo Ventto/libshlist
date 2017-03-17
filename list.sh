@@ -40,6 +40,13 @@ list_add () {
     list_empty "$2" && echo "$1" || printf '%s\n%s' "$2" "$1"
 }
 
+# Insert an element : list_insert "$elt" "$index" "$lst"
+list_insert () {
+    [ "$2" -gt "$(list_len "$3")" ] && return 1
+    echo "$3" | head -n "$2"; echo "$1"; j=$(($(list_len "$3") - $2))
+    echo "$3" | tail -n "$j"; return 0
+}
+
 # Deletes the first-hit element : list_del "$elt" "$lst"
 list_del () {
     echo "$2" | sed -e "0,/$1/ s///" -e '/^$/d'
