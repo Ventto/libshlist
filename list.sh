@@ -59,11 +59,11 @@ list_delall () {
 
 # Prints the element from its index : list_get "$index" "$lst"
 list_get () {
-    i=0;
+    i=0
     for e in $2; do
         [ "$i" = "$1" ] && { echo "$e"; return 0; }; i=$((i+1))
     done
-    return 1;
+    return 1
 }
 
 # Deletes the index of an list : list_delindex "$index" "$lst"
@@ -73,11 +73,11 @@ list_delindex () {
 
 # Prints the index of an element : list_indexof "$elt" "$lst"
 list_indexof () {
-    i=0;
+    i=0
     for e in $2; do
         [ "$e" = "$1" ] && { echo "$i"; return 0; }; i=$((i+1));
     done
-    return 1;
+    return 1
 }
 
 # Returns 0 if element found else 1 : list_contains "$elt" "$lst"
