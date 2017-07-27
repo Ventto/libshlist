@@ -5,22 +5,19 @@ POSIX Shell List
 
 *"This is a POSIX Shell list implementation."*
 
-# Download
+# Usage
+
+* Download it:
 
 ```bash
 $ wget https://raw.githubusercontent.com/Ventto/posix-shell-list/master/list.sh
 ```
 
-# How to
-
-* Add the following line to your script:
+* Source the library into your script:
 
 ```bash
 . list.sh
 ```
-
-* Look at `test.sh` as examples.
-
 
 # Functions
 
