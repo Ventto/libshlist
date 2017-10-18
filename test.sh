@@ -4,7 +4,7 @@
 
 list_test () {
     lst="$1"
-    printf "Prints lst:%s\n\n" "$lst"
+    printf "Prints lst:\n%s\n\n" "$lst"
     printf "Length of lst: %s\n" "$(list_len "$lst")"
     printf "lst[1]: %s\n" "$(list_get 1 "$lst")"
     printf "lst[2]: %s\n" "$(list_get 2 "$lst")"
@@ -14,6 +14,12 @@ list_test () {
 
     lst="$(list_del 'e3' "$lst")"
     printf "Delete 'e3':\n%s\n\n" "$lst"
+
+    lst="$(list_del 'e' "$lst")"
+    printf "Delete 'e':\n%s\n\n" "$lst"
+
+    lst="$(list_del '4' "$lst")"
+    printf "Delete '4':\n%s\n\n" "$lst"
 
     lst="$(list_delindex '2' "$lst")"
     printf "Delete lst[2]:\n%s\n\n" "$lst"

@@ -49,7 +49,7 @@ list_insert () {
 
 # Deletes the first-hit element : list_del "$elt" "$lst"
 list_del () {
-    echo "$2" | sed -e "0,/$1/ s///" -e '/^$/d'
+    echo "$2" | sed -e "0,/^$1$/ s///" -e '/^$/d'
 }
 
 # Deletes all elements : list_delall "$elt" "$lst"
