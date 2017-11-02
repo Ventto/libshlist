@@ -5,39 +5,82 @@ POSIX Shell List
 
 *"This is a POSIX Shell list implementation."*
 
-# Usage
+## Perks
+
+* [x] **No requirement**: POSIX-compliant
+* [x] **Lightweight**: 81 lines
+* [x] **Extra**: Additional functions to fit your needs
+* [x] **Useful**: No internal independency
+* [x] **Safe**: No eval use (but an unsafe version is comming soon)
+
+# Installation
 
 * Download it:
 
 ```bash
-$ wget https://raw.githubusercontent.com/Ventto/posix-shell-list/master/list.sh
+$ wget https://raw.githubusercontent.com/Ventto/posix-shell-list/master/liblist.sh
 ```
 
-* Source the library into your script:
+* Source the library for including the functions into your Shell script:
 
 ```bash
-. list.sh
+. liblist.sh
+```
+
+* Each function is independent. So you can copy some functions into your
+script:
+
+```bash
+list_erase () {
+    echo "$2" | sed -e "0,/^$1$/ s///" -e '/^$/d'
+}
 ```
 
 # Functions
 
-**Warning:
-There is no check on arguments. Prior to respect the API.**
+Read the function documentation in the script.
+The following list enumerates all functions in the library:
 
 ```
-list 'string'                       : Creates a new list
-list_add "$elt" "$lst"              : Adds an element
-list_contains "$elt" "$lst"         : Returns 0 if element found else 1
-list_del "$elt" "$lst"              : Deletes the first-hit element
-list_delall "$elt" "$lst"           : Deletes all elements
-list_delindex "$index" "$lst"       : Deletes the index of a list
-list_empty "$lst"                   : Returns 0 if empty else 1
-list_get "$index" "$lst"            : Prints the element from its index
-list_head "$lst"                    : Prints the first element
-list_indexof "$elt" "$lst"          : Prints the index of an element
-list_insert "$elt" "$index" "$lst"  : Inserts an element at a given index
-list_last "$lst"                    : Prints the last element
-list_len "$lst"                     : Prints the length of a list
-list_map "$func" "$lst"             : Maps a list using a function
-list_occur "$elt" "$lst"            : Counts the number of elements
+list <elt> <elt> ...
+list_back <list>
+list_contains <elt> <list>
+list_count <elt> <list>
+list_empty <list>
+list_erase <elt> <list>
+list_erase_from <index> <list>
+list_erase_range <from_index> <to_index> <list>
+list_eraseat <index> <list>
+list_extract <from_index> <to_index> <list>
+list_front <list>
+list_get <index> <list>
+list_indexof <elt> <list>
+list_insert <elt> <index> <list>
+list_maps <func> <list>
+list_pop_back <list>
+list_pop_front <list>
+list_push_back <elt> <list>
+list_push_front <elt> <list>
+list_remove <elt> <list>
+list_replace <new_elt> <old_elt> <list>
+list_reverse <list>
+list_set <elt> <index> <list>
+list_size <list>
+list_sort <list>
+list_sort_reverse <list>
+```
+
+# Example
+
+`test/test.sh` offers an exhaustive usage of the library.
+
+* Quick start:
+
+```bash
+lst="$(list 'A' 'B' 'C')"
+lst="$(list_sort "$lst")"
+
+if list_empty "$lst"; then
+    echo 'The list is empty.'
+fi
 ```
