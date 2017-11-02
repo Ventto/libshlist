@@ -28,7 +28,7 @@
 # @return   0
 #
 list () {
-    for e; do echo "$e"; done
+    for e; do [ -n "$e" ] && echo "$e"; done
 }
 
 ##
@@ -38,7 +38,7 @@ list () {
 # @return   0
 #
 list_size () {
-    echo "$@" | wc -l
+    if [ -z "$1" ]; then echo '0'; else echo "$@" | wc -l; fi
 }
 
 ##
@@ -47,7 +47,7 @@ list_size () {
 # @return   [0|1]
 #
 list_empty () {
-    if [ "$(echo "$@" | wc -l)" -eq 0 ]; then return 0; else return 1; fi
+    if [ -z "$1" ]; then return 0; else return 1; fi
 }
 
 ##

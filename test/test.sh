@@ -82,4 +82,8 @@ Test_Get() {
     printf 'test: count='   ; list_count '1' "$lst"
     printf 'test: count='   ; list_count '215' "$lst"
     printf 'test: empty='   ; list_empty "$lst" && echo 'yes' || echo 'no'
+
+    lst="$(lst '' '' '' '')"
+    printf 'test (void): empty='    ; list_empty "$lst" && echo 'yes' || echo 'no'
+    printf 'test (void): size='     ; list_size "$lst"
 }
