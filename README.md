@@ -8,10 +8,10 @@ POSIX Shell List
 ## Perks
 
 * [x] **No requirement**: POSIX-compliant
-* [x] **Lightweight**: 81 lines
+* [x] **Lightweight**: ~100 lines
 * [x] **Extra**: Additional functions to fit your needs
 * [x] **Useful**: No internal independency
-* [x] **Safe**: No eval use (but an unsafe version is comming soon)
+* [x] **Both**: Safe and unsafe (passing argument by reference) versions
 
 # Installation
 
@@ -24,63 +24,88 @@ $ wget https://raw.githubusercontent.com/Ventto/posix-shell-list/master/liblist.
 * Source the library for including the functions into your Shell script:
 
 ```bash
-. liblist.sh
+. liblist.sh  (or)
+. liblist_unsafe.sh
 ```
 
 * Each function is independent. So you can copy some functions into your
-script:
-
-```bash
-list_erase () {
-    echo "$2" | sed -e "0,/^$1$/ s///" -e '/^$/d'
-}
-```
+script without sourcing
 
 # Functions
 
-Read the function documentation in the script.
-The following list enumerates all functions in the library:
+The whole function documentation is in the following library scripts:
+
+* `liblist.sh`: the variable assignation is required for conserving changes
+* `liblist_unsafe.sh`: uses `eval` special shell builtin for passing argument
+   by reference and set the list variable
+
+The following list enumerates all available functions:
 
 ```
-list <elt> <elt> ...
-list_back <list>
-list_contains <elt> <list>
-list_count <elt> <list>
-list_empty <list>
-list_erase <elt> <list>
-list_erase_from <index> <list>
-list_erase_range <from_index> <to_index> <list>
-list_eraseat <index> <list>
-list_extract <from_index> <to_index> <list>
-list_front <list>
-list_get <index> <list>
-list_indexof <elt> <list>
-list_insert <elt> <index> <list>
-list_maps <func> <list>
-list_pop_back <list>
-list_pop_front <list>
-list_push_back <elt> <list>
-list_push_front <elt> <list>
-list_remove <elt> <list>
-list_replace <new_elt> <old_elt> <list>
-list_reverse <list>
-list_set <elt> <index> <list>
-list_size <list>
-list_sort <list>
-list_sort_reverse <list>
+                SAFE                |           UNSAFE
+____________________________________|_______________________________
+list <elt> <elt> ...                |  list <elt> <elt> ...
+list_back <lst>                     |  list_back <lst>
+list_contains <elt> <lst>           |  list_contains <lst> <elt>
+list_count <elt> <lst>              |  list_count <lst> <elt>
+list_empty <lst>                    |  list_empty <lst>
+list_erase <elt> <lst>              |  list_erase <lst> <elt>
+list_erase_from <index> <lst>       |  list_erase_from <lst> <index>
+list_erase_range <from> <to> <lst>  |  list_erase_range <lst> <from> <to>
+list_eraseat <index> <lst>          |  list_eraseat <lst> <index>
+list_extract <from> <to> <lst>      |  list_extract <lst> <from> <to>
+list_front <lst>                    |  list_front <lst>
+list_get <index> <lst>              |  list_get <lst> <index>
+list_indexof <elt> <lst>            |  list_indexof <lst> <elt>
+list_insert <elt> <index> <lst>     |  list_insert <lst> <elt> <index>
+list_maps <func> <lst>              |  list_maps <lst> <func>
+list_pop_back <lst>                 |  list_pop_back <lst>
+list_pop_front <lst>                |  list_pop_front <lst>
+list_push_back <elt> <lst>          |  list_push_back <lst> <elt>
+list_push_front <elt> <lst>         |  list_push_front <lst> <elt>
+list_remove <elt> <lst>             |  list_remove <lst> <elt>
+list_replace <new> <old> <lst>      |  list_replace <lst> <new> <old>
+list_reverse <lst>                  |  list_reverse <lst>
+list_set <elt> <index> <lst>        |  list_set <lst> <elt> <index>
+list_size <lst>                     |  list_size <lst>
+list_sort <lst>                     |  list_sort <lst>
+list_sort_reverse <lst>             |  list_sort_reverse <lst>
 ```
 
 # Example
 
-`test/test.sh` offers an exhaustive usage of the library.
+Scripts in `test/` offer an exhaustive usage of both libraries.
 
-* Quick start:
+* Quick start (safe version):
 
 ```bash
 lst="$(list 'A' 'B' 'C')"
-lst="$(list_sort "$lst")"
+lst="$(list_sort "$lst")"           # { C, B, A }
 
 if list_empty "$lst"; then
     echo 'The list is empty.'
+fi
+
+index="$(list_indexof 'D' "$lst")"  # '', empty string
+
+if [ "$?" -ne 0 ]; then
+    echo 'Element not found.'
+fi
+```
+
+* Quick start (unsafe version):
+
+```bash
+lst="$(list 'A' 'B' 'C')"
+list_sort lst                    # { C, B, A }
+
+if list_empty lst; then
+    echo 'The list is empty.'
+fi
+
+index="$(list_indexof lst 'D')"  # '', empty string
+
+if [ "$?" -ne 0 ]; then
+    echo 'Element not found.'
 fi
 ```
