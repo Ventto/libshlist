@@ -47,7 +47,7 @@ list_size () {
 # @return   [0|1]
 #
 list_empty () {
-    if [ -z "$1" ]; then return 0; else return 1; fi
+    test -z "$1"
 }
 
 ##
