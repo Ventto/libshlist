@@ -69,7 +69,6 @@ list_push_front () {
 list_push_back () {
     test "$#" -ne 2 && return 1
     eval "test -n \"\$$1\"" || { eval "$1='$2'"; return; }
-    eval "test -n \"\$$1\"" || { eval "$1='$2'"; return; }
     eval "$1=\"\$(printf '%s\n%s' \"\$$1\" '$2')\"";
 }
 
