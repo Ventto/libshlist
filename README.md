@@ -1,7 +1,7 @@
 POSIX Shell List
 ================
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/Ventto/posix-shell-list/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/Ventto/libshlist/blob/master/LICENSE)
 
 *"This is a POSIX Shell list implementation."*
 
@@ -18,7 +18,7 @@ POSIX Shell List
 * Download it:
 
 ```bash
-$ wget https://raw.githubusercontent.com/Ventto/posix-shell-list/master/liblist.sh
+$ wget https://raw.githubusercontent.com/Ventto/libshlist/master/liblist.sh
 ```
 
 * Source the library for including the functions into your Shell script:
