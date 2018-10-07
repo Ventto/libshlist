@@ -7,11 +7,9 @@ POSIX Shell List
 
 ## Perks
 
-* [x] **No requirement**: POSIX-compliant
+* [x] **No requirement**: Shell POSIX-compliant
 * [x] **Lightweight**: ~100 lines
-* [x] **Extra**: Additional functions to fit your needs
-* [x] **Useful**: No internal independency
-* [x] **Both**: Safe and unsafe (passing argument by reference) versions
+* [x] **Both**: Safe and unsafe (passing argument by reference)
 
 # Installation
 
@@ -28,16 +26,16 @@ $ wget https://raw.githubusercontent.com/Ventto/libshlist/master/liblist.sh
 . liblist_unsafe.sh
 ```
 
-* Each function is independent. So you can copy some functions into your
-script without sourcing
+Each function is independent. So you can copy some functions into your script
+without sourcing.
 
 # Functions
 
 The whole function documentation is in the following library scripts:
 
-* `liblist.sh`: the variable assignation is required for conserving changes
-* `liblist_unsafe.sh`: uses `eval` special shell builtin for passing argument
-   by reference and set the list variable
+* `liblist.sh` requires variable assignation
+* `liblist_unsafe.sh` uses the `eval` Shell builtin for passing argument
+   by reference
 
 The following list enumerates all available functions:
 
@@ -72,40 +70,26 @@ list_sort <lst>                     |  list_sort <lst>
 list_sort_reverse <lst>             |  list_sort_reverse <lst>
 ```
 
-# Example
+# Examples
 
-Scripts in `test/` offer an exhaustive usage of both libraries.
-
-* Quick start (safe version):
+* Safe:
 
 ```bash
-lst="$(list 'A' 'B' 'C')"
-lst="$(list_sort "$lst")"           # { C, B, A }
+lst="$(list 'C' 'A' 'B')"
+lst="$(list_sort "$lst")"           # { A, B, C }
 
-if list_empty "$lst"; then
-    echo 'The list is empty.'
-fi
-
-index="$(list_indexof 'D' "$lst")"  # '', empty string
-
-if [ "$?" -ne 0 ]; then
-    echo 'Element not found.'
-fi
+index="$(list_indexof 'B' "$lst")"  # Empty String if not found
+printf '"B": found at %d\n' "$index"
 ```
 
-* Quick start (unsafe version):
+* Unsafe:
 
 ```bash
-lst="$(list 'A' 'B' 'C')"
-list_sort lst                    # { C, B, A }
+lst="$(list 'C' 'A' 'B')"
+list_sort lst                    # { A, B, C }
 
-if list_empty lst; then
-    echo 'The list is empty.'
-fi
-
-index="$(list_indexof lst 'D')"  # '', empty string
-
-if [ "$?" -ne 0 ]; then
-    echo 'Element not found.'
-fi
+index="$(list_indexof lst 'B')"  # Empty String if not found
+printf '"B" found at %d\n' "$index"
 ```
+
+See also scripts in `tests/` as examples.
