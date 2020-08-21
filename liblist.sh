@@ -75,7 +75,9 @@ list_push_back () {
 #
 list_insert () {
     test "$#" -ne 3 && return 1
-    i="$2"; [ "$i" != '$' ] &&  i=$((i+1)); echo "$3" | sed "${i}i${1}"
+    i="$2"; [ "$i" != '$' ] &&  i=$((i+1)); echo "$3" | sed "${i}i\\
+${1}
+"
 }
 
 ##

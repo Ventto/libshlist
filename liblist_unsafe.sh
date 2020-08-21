@@ -79,7 +79,9 @@ list_push_back () {
 #
 list_insert () {
     test "$#" -ne 3 && return 1; i="$3"; [ "$i" != '$' ] &&  i=$((i+1))
-    eval "$1=\"\$(echo \"\$$1\" | sed \"${i}i${2}\")\""
+    eval "$1=\"\$(echo \"\$$1\" | sed \"${i}i\\\\
+${2}
+\")\""
 }
 
 ##
